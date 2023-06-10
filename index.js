@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 const { writeFile } = require('fs').promises;
 const { Circle, Triangle, Square } = require('./lib/shapes.js');
+var validateColor = require("validate-color").default;
 
 // An array of questions for the user
 const questions = [
@@ -24,22 +25,11 @@ const questions = [
         }
     },
     {
-        type: 'list',
+        type: 'input',
         message: 'Select a shape color.',
         name: 'shapeColor',
-        choices: [
-            'Red',
-            'Orange',
-            'Yellow',
-            'Green',
-            'Blue',
-            'Purple',
-            'White',
-            'Black',
-            'Brown',
-        ],
         validate: (shapeColorInput) => {
-            if (shapeColorInput) {
+            if (validateColor(shapeColorInput)) {
                 return true;
             } else {
                 console.log('Please select a color for your shape?');
@@ -65,7 +55,7 @@ const questions = [
         message: 'Include a text color.',
         name: 'textColor',
         validate: (textColorInput) => {
-            if (textColorInput) {
+            if (validateColor(textColorInput)) {
                 return true;
             } else {
                 console.log('Please include a text color for your logo?');
