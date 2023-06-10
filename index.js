@@ -1,4 +1,4 @@
-// TODO: Include packages needed for this application
+// Include packages needed for this application
 const inquirer = require('inquirer');
 const { writeFile } = require('fs').promises;
 const { Circle, Triangle, Square } = require('./lib/shapes.js');
