@@ -110,6 +110,10 @@ function writeSVG(fileName, data) {
         </svg>`
     } else if (data.shape === "triangle") {
         shape = new Triangle(data.shapeColor).render();
+        svgFile = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height='300px' width='200px'>
+            ${shape}        
+            <text x="100px" y="200px" text-anchor="middle" stroke='${data.textColor}'>${data.text}</text>
+        </svg>`
     } else {
         shape = new Square(data.shapeColor).render();
         svgFile = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height='300px' width='200px'>
@@ -118,10 +122,8 @@ function writeSVG(fileName, data) {
         </svg>`
     }
 
-
-
     writeFile(fileName, svgFile, (err) => //Function to generate logo.svg!
-        err ? console.log(err) : console.log('Generated logo.svg!')
+        err ? console.log(err) : console.log('Generated logo.svg')
     );
 }
 
