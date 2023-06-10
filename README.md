@@ -16,18 +16,10 @@
 
 6)WHEN I open the `logo.svg` file in a browser THEN I am shown a 300x200 pixel image that matches the criteria I entered
 
-## Deployed Page Url
-
-1. 
-
 ## Walkthrough Video 
-1.
-
-
-## Screenshot of App
-
+https://drive.google.com/file/d/1oCUuNDRF3yvBWKTeeBAFvI2ehDXYhke3/view?usp=sharing
 
 ## Sample SVG file for a project generated using this application
+![Sample Svg](./examples/logo.svg "Sample Svg File")
 
-1.
 
