@@ -99,6 +99,10 @@ const promptUser = () => {
 // Function to write svg file
 function writeSVG(fileName, data) {
     console.log(data);
+    const svgFile = `
+    <svg width='200px' height='300px'>        
+        <text x='50%' y='50%' text-anchor='middle' alignment-baseline='middle' stroke='black' stroke-width="3">${data.text}</text>
+    </svg>`
     // Create circle,triangle, or square
     writeFile(fileName, data, (err) => //Function to generate logo.svg!
         err ? console.log(err) : console.log('Generated logo.svg!')
