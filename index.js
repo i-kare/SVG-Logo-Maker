@@ -99,12 +99,23 @@ const promptUser = () => {
 // Function to write svg file
 function writeSVG(fileName, data) {
     console.log(data);
+    let shape = "";
+
+    if(data.shape === "circle"){
+        shape = new Circle(data.shapeColor).render();
+    } else if(data.shape === "triangle"){
+        shape = new Triangle(data.shapeColor).render();
+    } else {
+        shape = new Square(data.shapeColor).render();
+    }
+
     const svgFile = `
-    <svg width='200px' height='300px'>        
-        <text x='50%' y='50%' text-anchor='middle' alignment-baseline='middle' stroke='black' stroke-width="3">${data.text}</text>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height='300px' width='200px'>
+        ${shape}        
+        <text x='50%' y='50%' text-anchor='middle' alignment-baseline='middle' stroke='${data.textColor}'>${data.text}</text>
     </svg>`
-    // Create circle,triangle, or square
-    writeFile(fileName, data, (err) => //Function to generate logo.svg!
+
+    writeFile(fileName, svgFile, (err) => //Function to generate logo.svg!
         err ? console.log(err) : console.log('Generated logo.svg!')
     );
 }
