@@ -1,9 +1,9 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const { writeFile } = require('fs').promises;
-const {Circle, Triangle, Square} = require('./lib/shapes.js');
+const { Circle, Triangle, Square } = require('./lib/shapes.js');
 
-// TODO: Create an array of questions for user input
+// An array of questions for the user
 const questions = [
     {
         type: 'list',
@@ -61,25 +61,14 @@ const questions = [
         }
     },
     {
-        type: 'list',
-        message: 'Select a text color.',
+        type: 'input',
+        message: 'Include a text color.',
         name: 'textColor',
-        choices: [
-            'Red',
-            'Orange',
-            'Yellow',
-            'Green',
-            'Blue',
-            'Purple',
-            'White',
-            'Black',
-            'Brown',
-        ],
         validate: (textColorInput) => {
             if (textColorInput) {
                 return true;
             } else {
-                console.log('Please select a text color for your logo?');
+                console.log('Please include a text color for your logo?');
                 return false;
             }
         }
@@ -100,24 +89,24 @@ const questions = [
             }
         }
     },
-   
 ];
 
+// Ask user questions
 const promptUser = () => {
     return inquirer.prompt(questions)
 }
 
-// TODO: Create a function to write README file
+// Function to write svg file
 function writeSVG(fileName, data) {
     console.log(data);
     // Create circle,triangle, or square
-    writeFile(fileName, data, (err) => //Function to generate Readme.md
+    writeFile(fileName, data, (err) => //Function to generate logo.svg!
         err ? console.log(err) : console.log('Generated logo.svg!')
     );
 }
 
-// TODO: Create a function to initialize app
-const init = () => { //WriteFile method that uses promises instead of callbacks
+// Initializer function that asks user questions and then writes the svg
+const init = () => { 
     promptUser()
         .then((answers) => writeSVG('logo.svg', answers))
         .then(() => console.log(`Generated logo.svg!`))
