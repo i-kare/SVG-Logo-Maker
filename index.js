@@ -100,20 +100,25 @@ const promptUser = () => {
 function writeSVG(fileName, data) {
     console.log(data);
     let shape = "";
+    let svgFile = "";
 
-    if(data.shape === "circle"){
+    if (data.shape === "circle") {
         shape = new Circle(data.shapeColor).render();
-    } else if(data.shape === "triangle"){
+        svgFile = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height='300px' width='200px'>
+            ${shape}        
+            <text x='50%' y='50%' text-anchor='middle' alignment-baseline='middle' stroke='${data.textColor}'>${data.text}</text>
+        </svg>`
+    } else if (data.shape === "triangle") {
         shape = new Triangle(data.shapeColor).render();
     } else {
         shape = new Square(data.shapeColor).render();
+        svgFile = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height='300px' width='200px'>
+            ${shape}        
+            <text x="100px" y="100px" text-anchor="middle" stroke='${data.textColor}'>${data.text}</text>
+        </svg>`
     }
 
-    const svgFile = `
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height='300px' width='200px'>
-        ${shape}        
-        <text x='50%' y='50%' text-anchor='middle' alignment-baseline='middle' stroke='${data.textColor}'>${data.text}</text>
-    </svg>`
+
 
     writeFile(fileName, svgFile, (err) => //Function to generate logo.svg!
         err ? console.log(err) : console.log('Generated logo.svg!')
@@ -121,7 +126,7 @@ function writeSVG(fileName, data) {
 }
 
 // Initializer function that asks user questions and then writes the svg
-const init = () => { 
+const init = () => {
     promptUser()
         .then((answers) => writeSVG('logo.svg', answers))
         .then(() => console.log(`Generated logo.svg!`))
